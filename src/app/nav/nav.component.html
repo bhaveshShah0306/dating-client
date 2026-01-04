@@ -1,0 +1,35 @@
+<header
+  class="p-3 w-full fixed top-0 z-50 bg-gradient-to-r from-blue-600 to-black"
+>
+  <div class="flex align-middle items-center px-10 mx-auto gap-6">
+    <a
+      href=""
+      class="flex items-center gap-3 max-h-16 text-white border-r-white doder-r-r-2"
+    ></a>
+    <div class="flex align-middle ml-auto gap-3">
+      <form
+        #loginForm="ngForm"
+        (ngSubmit)="login()"
+        class="flex items-center gap-3"
+      >
+        <input
+          [(ngModel)]="credentials.userName"
+          name="email"
+          type="text"
+          class="input bg-black"
+          placeholder="Email"
+        />
+        <input
+          [(ngModel)]="credentials.password"
+          name="Password"
+          type="password"
+          class="input"
+          placeholder="Password"
+        />
+        <button type="submit" style="color: white"></button>
+      </form>
+    </div>
+  </div>
+
+  nav comp
+</header>
