@@ -1,0 +1,8 @@
+| Use case                      | Best format                     |
+| ----------------------------- | ------------------------------- |
+| User profile photos           | **AVIF → WebP → JPG fallback**  |
+| Product images                | **AVIF / WebP**                 |
+| UI icons / logos              | **SVG → WebP (lossless) → PNG** |
+| Screenshots                   | **WebP lossless**               |
+| Large hero banners            | **AVIF**                        |
+| Legacy browser support needed | **JPG / PNG fallback**          |

@@ -1,0 +1,8 @@
+<ng-container
+  >@for(task of tasks; track task.status) {
+  <div>
+    <strong>{{ task.title }}</strong> - {{ task.status }}
+    <button (click)="removeTask(task)">Delete</button>
+  </div>
+  }
+</ng-container>

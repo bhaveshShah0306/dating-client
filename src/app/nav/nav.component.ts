@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../core/account.service';
-import { UserInfo } from '../core/UserInfo.interface';
+import { UserInfo } from '../../interfaces/UserInfo.interface';
 @Component({
   selector: 'app-nav',
   standalone: true,
@@ -11,12 +11,24 @@ import { UserInfo } from '../core/UserInfo.interface';
 })
 export class NavComponent {
   private account = inject(AccountService);
-  protected credentials!: UserInfo;
+  protected credentials: UserInfo = {
+    Username: '',
+    Password: '',
+  };
+  protected loggedIn = signal(false);
   login() {
     this.account.login(this.credentials).subscribe({
-      next: (result) => this.account.login(this.credentials),
+      next: (result) => {
+        console.log(`Login response object ${result}`);
+
+        this.loggedIn.set(true);
+      },
+      // this.account.login(this.credentials),
       error: (error) => alert(error.message),
     });
     console.log(this.credentials);
+  }
+  logout() {
+    this.loggedIn.set(false);
   }
 }
