@@ -1,5 +1,58 @@
-<ng-container>
-  @if(imageUrl) {
-  <img [src]="this.imageUrl" alt="Enhanced Bedroom Image" />
-  }
-</ng-container>
+<!-- landing-page.component.html -->
+<section class="hero">
+  <!-- Hero Image with Parallax -->
+  <img
+    #heroImage
+    [src]="cloudinaryImageUrl"
+    alt="Luxury Hotel Bedroom"
+    class="hero-image"
+    [class.loaded]="!isLoading()"
+  />
+
+  <!-- Overlay -->
+  <div #heroOverlay class="hero-overlay"></div>
+
+  <!-- Hero Content -->
+  <div #heroContent class="hero-content">
+    <h1 class="hero-title">Where Luxury Meets Connection</h1>
+    <p class="hero-subtitle">
+      Experience unforgettable moments in world-class hotel destinations
+    </p>
+    <button class="cta-button">Start Your Journey</button>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" [class.hide]="scrollY() > 100">
+    <svg viewBox="0 0 30 50">
+      <rect x="5" y="5" width="20" height="35" rx="10" />
+      <circle cx="15" cy="15" r="3">
+        <animate
+          attributeName="cy"
+          from="15"
+          to="30"
+          dur="1.5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </svg>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="features-grid">
+    <div
+      *ngFor="let feature of features; trackBy: trackByIndex"
+      class="feature-card"
+    >
+      <div class="feature-icon">{{ feature.icon }}</div>
+      <h3 class="feature-title">{{ feature.title }}</h3>
+      <p class="feature-description">{{ feature.description }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Loading State -->
+<div *ngIf="isLoading()" class="loading-overlay">
+  <div class="spinner"></div>
+</div>

@@ -8,43 +8,43 @@
     ></a>
     <div class="flex align-middle ml-auto gap-3">
       @if (loggedIn()) {
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn m-1">Click</div>
-        <ul
-          tabindex="0"
-          class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-        >
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
-        </ul>
-      </div>
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn m-1">Click</div>
+          <ul
+            tabindex="0"
+            class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          >
+            <li><a>Item 1</a></li>
+            <li><a>Item 2</a></li>
+          </ul>
+        </div>
       } @else {
-      <form
-        #loginForm="ngForm"
-        (ngSubmit)="login()"
-        class="flex items-center gap-3"
-      >
-        <input
-          [(ngModel)]="credentials.Username"
-          name="Username"
-          type="text"
-          class="input px-3 py-2 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-400"
-          placeholder="UserName"
-        />
-        <input
-          [(ngModel)]="credentials.Password"
-          name="Password"
-          type="password"
-          class="input px-3 py-2 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-400"
-          placeholder="Password"
-        />
-        <button
-          type="submit"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+        <form
+          #loginForm="ngForm"
+          (ngSubmit)="login()"
+          class="flex items-center gap-3"
         >
-          Submit
-        </button>
-      </form>
+          <input
+            [(ngModel)]="credentials.Username"
+            name="Username"
+            type="text"
+            class="input px-3 py-2 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-400"
+            placeholder="Username..."
+          />
+          <input
+            [(ngModel)]="credentials.Password"
+            name="Password"
+            type="password"
+            class="input px-3 py-2 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-400"
+            placeholder="Password..."
+          />
+          <button
+            type="submit"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            Submit
+          </button>
+        </form>
       }
     </div>
   </div>
