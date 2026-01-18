@@ -29,6 +29,7 @@ export class LandingPageComponent implements OnDestroy {
       .subscribe({
         next: (url) => {
           this.imageUrl = url;
+          console.log('Enhanced image URL set in component:', url);
           this.cdr.markForCheck();
         },
         error: (error) => {

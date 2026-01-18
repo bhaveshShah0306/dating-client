@@ -19,11 +19,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
-  ngAfterViewInit(): void {
-    this.cdr.detach();
-  }
+
   title = 'my_app';
   img!: CloudinaryImage;
 
