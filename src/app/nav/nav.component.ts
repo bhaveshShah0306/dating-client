@@ -13,9 +13,9 @@ import { UserInfo } from '../../interfaces/UserInfo.interface';
   imports: [FormsModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent {
-  constructor(private cdr: ChangeDetectionStrategy.OnPush) {}
   private account = inject(AccountService);
   protected credentials: UserInfo = {
     Username: '',
