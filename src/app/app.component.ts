@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './nav/nav.component';
 import { CloudinaryModule } from '@cloudinary/ng';
@@ -11,8 +17,13 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   imports: [RouterOutlet, NavComponent, CloudinaryModule, LandingPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+  constructor(private cdr: ChangeDetectorRef) {}
+  ngAfterViewInit(): void {
+    this.cdr.detach();
+  }
   title = 'my_app';
   img!: CloudinaryImage;
 

@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ImageService } from '../core/image.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -8,25 +13,32 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent implements OnDestroy {
   imageUrl: string = '';
   isLoading: boolean = false;
 
-  constructor(private imageService: ImageService) {
+  constructor(
+    private imageService: ImageService,
+    private cdr: ChangeDetectorRef,
+  ) {
     this.imageService
       .getEnhancedBedroomImage()
       .pipe(takeUntilDestroyed())
       .subscribe({
         next: (url) => {
           this.imageUrl = url;
+          this.cdr.markForCheck();
         },
         error: (error) => {
           console.error('Error fetching image:', error);
           this.isLoading = false;
+          this.cdr.markForCheck();
         },
       });
   }
+
   ngOnDestroy(): void {
     if (this.imageUrl) {
       URL.revokeObjectURL(this.imageUrl);
