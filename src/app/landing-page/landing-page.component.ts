@@ -38,41 +38,44 @@ export class LandingPageComponent implements OnDestroy, AfterViewInit {
   scrollY = signal<number>(0);
 
   // Cloudinary optimized image URL
-  cloudinaryImageUrl =
-    'https://res.cloudinary.com/dgooj7git/image/upload/e_improve:indoor:50/q_auto:best,f_auto,w_1920,h_1080,c_fill,g_auto/bedroom_a6l7g8.jpg';
+  cloudinaryImageUrl = signal<string>('');
+  //   'https://res.cloudinary.com/dgooj7git/image/upload/e_improve:indoor:50/q_auto:best,f_auto,w_1920,h_1080,c_fill,g_auto/bedroom_a6l7g8.jpg';
 
   features: FeatureCard[] = [
     {
       icon: '✨',
       title: 'Premium Venues',
       description:
-        'Curated selection of 5-star hotels and exclusive locations for sophisticated encounters',
+        'Discover exceptional locations for professional networking and social connections in sophisticated settings',
     },
     {
       icon: '🔒',
-      title: 'Privacy First',
+      title: 'Privacy & Security',
       description:
-        'Discreet, secure platform designed for professionals seeking meaningful connections',
+        'Your privacy matters. Connect with confidence through our secure, professional platform',
     },
     {
       icon: '💎',
-      title: 'Verified Members',
+      title: 'Verified Profiles',
       description:
-        'Exclusive community of verified individuals who value quality and authenticity',
+        'Connect with genuine professionals through our comprehensive verification process',
     },
   ];
 
   constructor(
     private imageService: ImageService,
     private cdr: ChangeDetectorRef,
-  ) {
-    // Load image from your API if needed
+  ) {}
+
+  loadImage(): void {
+    this.isLoading.set(true);
+
     this.imageService
       .getEnhancedBedroomImage()
       .pipe(takeUntilDestroyed())
       .subscribe({
         next: (url) => {
-          this.imageUrl.set(url);
+          this.cloudinaryImageUrl.set(url); // Set the signal value
           this.isLoading.set(false);
           console.log('Enhanced image URL set:', url);
           this.cdr.markForCheck();
